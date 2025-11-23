@@ -2,7 +2,8 @@
 using namespace std;
 
 int main(){
-
+//尝试变更一下重新上传
+    short a = 10;
     struct Node{
         int x;
         int y;
