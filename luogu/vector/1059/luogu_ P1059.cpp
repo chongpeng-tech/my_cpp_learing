@@ -1,8 +1,9 @@
+//已经成功AC
 #include<bits/stdc++.h>
 using namespace std;
 
 int main(){
-     cout << "STARTING..." << endl; 
+     //cout << "STARTING..." << endl; 
     int size,temp;
     int count = 0;
     vector<int> nums;
