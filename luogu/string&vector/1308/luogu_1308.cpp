@@ -1,12 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std;
 //暂时没有AC😭
+//11.27已AC
 int main(){
     string find, text, temp;
     vector<string> store;
     int count = 0;
-    int firstPos = -1;
-    int currentPos = 0;
+    //int firstPos = -1;
+    //int currentPos = 0;
     //用vector存单词，但是该怎么切割单词呢
     getline(cin,find);
     getline(cin,text);
@@ -28,16 +29,15 @@ int main(){
     for(int i = 0; i < store_size; i++){
         if(find == store[i]){
             count++;
-            if(firstPos == -1){
-                firstPos =  currentPos;
-            }
         }
-        currentPos = currentPos + store[i].size() + 1;
     }
-    if(firstPos == -1){
+    string tempText = " " + text + " ";
+    string tempFind = " " + find + " ";
+    int pos = tempText.find(tempFind);
+    if(pos == -1){
         cout << -1;
     }else{
-        cout << count << " " << firstPos;
+        cout << count << " " << pos;
     }
     return 0;
 }
