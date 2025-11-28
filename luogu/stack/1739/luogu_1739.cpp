@@ -11,7 +11,7 @@ int main(){
             st.push(s[i]);
         }
         if(s[i] == ')'){
-            if(st.top() == s[i]){
+            if(!st.empty()){
                 st.pop();
             }else{
                 flag = false;
@@ -19,7 +19,7 @@ int main(){
             }
         }
     }
-    if(flag == true){
+    if(flag == true && st.empty()){
         cout << "YES" << '\n';
     }else{
         cout << "NO" << '\n';
