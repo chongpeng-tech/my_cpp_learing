@@ -1,0 +1,7 @@
+### File Organization Log - 2025-12-05 15:32:42 ###
+
+2025-12-05 15:32:42 | Moved | test_dir/image.JPG -> test_dir/jpg/image.JPG
+2025-12-05 15:32:42 | Moved | test_dir/no_extension_file -> test_dir/no_extension_file/no_extension_file
+2025-12-05 15:32:42 | Moved | test_dir/subfolder/config.json -> test_dir/json/config.json
+2025-12-05 15:32:42 | Moved | test_dir/document.txt -> test_dir/txt/document.txt
+2025-12-05 15:32:42 | Moved | test_dir/archive.zip -> test_dir/zip/archive.zip
