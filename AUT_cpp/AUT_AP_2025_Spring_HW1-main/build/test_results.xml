@@ -1,45 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites tests="10" failures="4" disabled="0" errors="0" time="0" timestamp="2025-12-05T17:26:19.579" name="AllTests">
-  <testsuite name="SortPointsByDistanceTest" tests="4" failures="0" disabled="0" skipped="0" errors="0" time="0" timestamp="2025-12-05T17:26:19.579">
-    <testcase name="EmptyVector" status="run" result="completed" time="0" timestamp="2025-12-05T17:26:19.579" classname="SortPointsByDistanceTest" />
-    <testcase name="SingleElement" status="run" result="completed" time="0" timestamp="2025-12-05T17:26:19.579" classname="SortPointsByDistanceTest" />
-    <testcase name="MultiplePoints" status="run" result="completed" time="0" timestamp="2025-12-05T17:26:19.579" classname="SortPointsByDistanceTest" />
-    <testcase name="IdenticalDistances" status="run" result="completed" time="0" timestamp="2025-12-05T17:26:19.579" classname="SortPointsByDistanceTest" />
+<testsuites tests="10" failures="0" disabled="0" errors="0" time="0" timestamp="2025-12-05T19:29:45.359" name="AllTests">
+  <testsuite name="SortPointsByDistanceTest" tests="4" failures="0" disabled="0" skipped="0" errors="0" time="0" timestamp="2025-12-05T19:29:45.359">
+    <testcase name="EmptyVector" status="run" result="completed" time="0" timestamp="2025-12-05T19:29:45.359" classname="SortPointsByDistanceTest" />
+    <testcase name="SingleElement" status="run" result="completed" time="0" timestamp="2025-12-05T19:29:45.359" classname="SortPointsByDistanceTest" />
+    <testcase name="MultiplePoints" status="run" result="completed" time="0" timestamp="2025-12-05T19:29:45.359" classname="SortPointsByDistanceTest" />
+    <testcase name="IdenticalDistances" status="run" result="completed" time="0" timestamp="2025-12-05T19:29:45.359" classname="SortPointsByDistanceTest" />
   </testsuite>
-  <testsuite name="CountIslandsTest" tests="6" failures="4" disabled="0" skipped="0" errors="0" time="0" timestamp="2025-12-05T17:26:19.579">
-    <testcase name="EmptyGrid" status="run" result="completed" time="0" timestamp="2025-12-05T17:26:19.579" classname="CountIslandsTest" />
-    <testcase name="NoIslands" status="run" result="completed" time="0" timestamp="2025-12-05T17:26:19.579" classname="CountIslandsTest" />
-    <testcase name="SingleIslandAllOnes" status="run" result="completed" time="0" timestamp="2025-12-05T17:26:19.579" classname="CountIslandsTest">
-      <failure message="/home/admin/my_cpp_learing/AUT_cpp/AUT_AP_2025_Spring_HW1-main/src/unit_test.cpp:96&#x0A;Expected equality of these values:&#x0A;  count_islands(grid)&#x0A;    Which is: 0&#x0A;  1&#x0A;A grid with all ones should count as 1 island." type=""><![CDATA[/home/admin/my_cpp_learing/AUT_cpp/AUT_AP_2025_Spring_HW1-main/src/unit_test.cpp:96
-Expected equality of these values:
-  count_islands(grid)
-    Which is: 0
-  1
-A grid with all ones should count as 1 island.]]></failure>
-    </testcase>
-    <testcase name="MultipleIslands" status="run" result="completed" time="0" timestamp="2025-12-05T17:26:19.579" classname="CountIslandsTest">
-      <failure message="/home/admin/my_cpp_learing/AUT_cpp/AUT_AP_2025_Spring_HW1-main/src/unit_test.cpp:106&#x0A;Expected equality of these values:&#x0A;  count_islands(grid)&#x0A;    Which is: 0&#x0A;  3&#x0A;The provided example grid should have 3 islands." type=""><![CDATA[/home/admin/my_cpp_learing/AUT_cpp/AUT_AP_2025_Spring_HW1-main/src/unit_test.cpp:106
-Expected equality of these values:
-  count_islands(grid)
-    Which is: 0
-  3
-The provided example grid should have 3 islands.]]></failure>
-    </testcase>
-    <testcase name="DiagonalIslandsNotConnected" status="run" result="completed" time="0" timestamp="2025-12-05T17:26:19.579" classname="CountIslandsTest">
-      <failure message="/home/admin/my_cpp_learing/AUT_cpp/AUT_AP_2025_Spring_HW1-main/src/unit_test.cpp:116&#x0A;Expected equality of these values:&#x0A;  count_islands(grid)&#x0A;    Which is: 0&#x0A;  5&#x0A;Diagonal islands should not be connected; expected 5 islands." type=""><![CDATA[/home/admin/my_cpp_learing/AUT_cpp/AUT_AP_2025_Spring_HW1-main/src/unit_test.cpp:116
-Expected equality of these values:
-  count_islands(grid)
-    Which is: 0
-  5
-Diagonal islands should not be connected; expected 5 islands.]]></failure>
-    </testcase>
-    <testcase name="ComplexLargeGrid" status="run" result="completed" time="0" timestamp="2025-12-05T17:26:19.580" classname="CountIslandsTest">
-      <failure message="/home/admin/my_cpp_learing/AUT_cpp/AUT_AP_2025_Spring_HW1-main/src/unit_test.cpp:131&#x0A;Expected equality of these values:&#x0A;  count_islands(grid)&#x0A;    Which is: 0&#x0A;  17&#x0A;The complex large grid should return 17 islands." type=""><![CDATA[/home/admin/my_cpp_learing/AUT_cpp/AUT_AP_2025_Spring_HW1-main/src/unit_test.cpp:131
-Expected equality of these values:
-  count_islands(grid)
-    Which is: 0
-  17
-The complex large grid should return 17 islands.]]></failure>
-    </testcase>
+  <testsuite name="CountIslandsTest" tests="6" failures="0" disabled="0" skipped="0" errors="0" time="0" timestamp="2025-12-05T19:29:45.359">
+    <testcase name="EmptyGrid" status="run" result="completed" time="0" timestamp="2025-12-05T19:29:45.359" classname="CountIslandsTest" />
+    <testcase name="NoIslands" status="run" result="completed" time="0" timestamp="2025-12-05T19:29:45.359" classname="CountIslandsTest" />
+    <testcase name="SingleIslandAllOnes" status="run" result="completed" time="0" timestamp="2025-12-05T19:29:45.359" classname="CountIslandsTest" />
+    <testcase name="MultipleIslands" status="run" result="completed" time="0" timestamp="2025-12-05T19:29:45.359" classname="CountIslandsTest" />
+    <testcase name="DiagonalIslandsNotConnected" status="run" result="completed" time="0" timestamp="2025-12-05T19:29:45.359" classname="CountIslandsTest" />
+    <testcase name="ComplexLargeGrid" status="run" result="completed" time="0" timestamp="2025-12-05T19:29:45.359" classname="CountIslandsTest" />
   </testsuite>
 </testsuites>

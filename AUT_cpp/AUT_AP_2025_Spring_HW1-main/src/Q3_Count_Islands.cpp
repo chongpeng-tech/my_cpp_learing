@@ -1,20 +1,35 @@
 #include "Q3_Count_Islands.h"
 #include <iostream> // 引入iostream，用于打印
-
+void dfs_sink(std::vector<std::vector<int>>& grid_copy, int r, int c);
 int count_islands(const std::vector<std::vector<int>>& grid) {
-    // 1. 解决 [Werror=unused-parameter] 错误：
-    // 打印 grid 的尺寸，确保使用了参数
-    if (grid.empty()) {
-        // 如果为空，返回 0 (符合作业要求)
+    if(grid.empty() || grid[0].empty()){
         return 0;
     }
-
-    // 2. 避免 error: expected size ‘<int>’ 错误，确保函数返回一个int值
-    // 这里只是为了让编译通过并运行测试，实际算法还没写
-
-    // 打印第一行的尺寸，确保参数被使用 (这行代码只是临时的，为了绕过警告)
-    std::cout << "Grid size: " << grid.size() << "x" << grid[0].size() << std::endl;
-
-    // 暂时返回 0，让测试失败，但代码能运行
-    return 0; 
+    int count_island = 0;
+    std::vector<std::vector<int>> grid_copy = grid;
+    //复制一份，方便修改
+    for(std::size_t row = 0; row < grid_copy.size(); row++){
+        for(std:: size_t column = 0; column < grid_copy[row].size(); column++){
+            if(grid_copy[row][column] == 1){
+                count_island++;
+                dfs_sink(grid_copy, row, column);
+            }else{
+                continue;
+            }
+        }
+    }
+    return count_island;
 }
+    void dfs_sink(std::vector<std::vector<int>>& grid_copy, int r, int c){
+        int R = grid_copy.size();
+        int C = grid_copy[0].size();
+        if(r < 0 || r >= R || c < 0 || c >= C || grid_copy[r][c] == 0){
+            return;
+        }else{
+            grid_copy[r][c] = 0;
+            dfs_sink(grid_copy, r - 1, c);
+            dfs_sink(grid_copy, r + 1, c);
+            dfs_sink(grid_copy, r, c - 1);
+            dfs_sink(grid_copy, r, c + 1);
+        }
+    }
