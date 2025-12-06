@@ -3,9 +3,9 @@ cmake_minimum_required(VERSION 3.14)
 
 project(AUT_AP_2025_Spring_HW2)
 
-# Set the C++ standard to C++23 and make it a required standard.
-# If the compiler does not support C++23, CMake will produce an error.
-set(CMAKE_CXX_STANDARD 23)
+# Set the C++ standard to C++17 and make it a required standard.
+# If the compiler does not support C++17, CMake will produce an error.
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(GTest REQUIRED)

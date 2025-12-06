@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -Werror -Wpedantic   CMakeFiles/main.dir/src/main.cpp.o CMakeFiles/main.dir/src/unit_test.cpp.o CMakeFiles/main.dir/src/Q1_Variadic_Template_sum.cpp.o CMakeFiles/main.dir/src/Q2_Word_Frequency.cpp.o  -o main  /usr/lib/x86_64-linux-gnu/libgtest_main.a /usr/lib/x86_64-linux-gnu/libgtest.a -lpthread 
