@@ -7,5 +7,5 @@
 //先定义函数
 
 size_t hash_string(const std::string& input);
-
+std::string generate_policy_number();
 #endif
