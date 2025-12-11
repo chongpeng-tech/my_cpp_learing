@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv)
 {
-    if (true) // Set to false to run unit-tests
+    if (false) // Set to false to run unit-tests
     {
         // Debug section: Place your debugging code here
     }
