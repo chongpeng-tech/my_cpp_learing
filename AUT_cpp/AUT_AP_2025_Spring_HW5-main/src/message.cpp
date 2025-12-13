@@ -21,14 +21,47 @@ std::string Message::get_receiver() const {return receiver; }
 std::string Message::get_time() const {return time; }
 
 void Message::print(std::ostream& os) const {
-    os << "*****************" << std::endl;
+    os << "*************************" << std::endl;
     os << sender << " -> " << receiver << std::endl;
     os << "Message type: " << type << std::endl;
     os << "Message time: " << time << std::endl;
 }
 
 // << 运算符重载
-std::ostream& operator<<(std::ostream& os, const std::string& msg) {
+std::ostream& operator<<(std::ostream& os, const Message& msg) {
     msg.print(os);
     return os;
 }
+
+//TextMessage
+TextMessage::TextMessage(std::string text, std::string sender, std::string receiver)
+    :Message("text", sender, receiver), text(text)
+{
+}
+
+void TextMessage::print(std::ostream& os) const {
+    Message::print(os);
+    os << "text: " << text << std::endl;
+    os << "*************************" << std::endl;
+}
+
+std::string TextMessage::get_text() const {return text; }
+
+//VoiceMessage
+
+VoiceMessage::VoiceMessage(std::string sender, std::string receiver)
+    :Message("voice", sender, receiver){
+        for(int i = 0; i < 5; ++i){
+            voice.push_back(static_cast<unsigned char>(rand() % 256));
+        }
+}
+
+void VoiceMessage::print(std::ostream& os) const {
+    Message::print(os);
+    os << "voice: ";
+    for(size_t i = 0; i < voice.size(); ++i){
+        os << static_cast<int>(voice[i]) <<  (i == voice.size() - 1 ? "" : " ");
+    }
+}
+
+std::vector<unsigned char> VoiceMessage::get_voice() const {return voice; }
