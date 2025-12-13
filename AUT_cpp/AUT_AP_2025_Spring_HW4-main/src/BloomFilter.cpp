@@ -6,9 +6,9 @@ BloomFilter<N>::BloomFilter(unsigned int num_hashes)
     : num_hashes(num_hashes)
 {
     server = new CDNServer();
-
-    std::random_device rd;
-    std::mt19937 gen(rd());
+//不能用真随机，何意味
+    //std::random_device rd;
+    std::mt19937 gen(24);
 
 
     //循环num_hashes次，不知道是在干什么
@@ -131,18 +131,47 @@ bool BloomFilter<N>::certainlyContains(std::string&& item) const {
     return certainlyContains(item);
 }
 
+// template<std::size_t N>
+// void BloomFilter<N>::add(std::string&& file_name){
+//     std::ifstream file(file_name);
+//     if(!file.is_open()){
+//         return;
+//     }
+//     std::string word;
+//     while(file >> word){
+//         add(word);
+//     }
+//     file.close();
+// }
+
+// ==================== 修正后的“智能”添加函数 ====================
 template<std::size_t N>
-void BloomFilter<N>::add(std::string&& file_name){
-    std::ifstream file(file_name);
-    if(!file.is_open()){
-        return;
+void BloomFilter<N>::add(std::string&& item_or_file){
+    // 1. 先尝试把它当文件名打开
+    std::ifstream file(item_or_file);
+    
+    if(file.is_open()){
+        // A. 打开成功！说明这是个文件
+        std::string word;
+        while(file >> word){
+            if (!word.empty() && word.back() == ',') {
+                word.pop_back();
+            }
+            add(word); // 递归调用基础 add 把文件里的词一个个存进去
+        }
+        file.close();
+    } else {
+        // B. 打开失败！说明这不是文件，而是个普通单词（比如 "test"）
+        // 或者是文件路径不对，那就当单词处理，总比丢了好
+        
+        // 强制转换成 const string&，调用那个“存单词”的 add 函数
+        const std::string& word_ref = item_or_file;
+        add(word_ref); 
     }
-    std::string word;
-    while(file >> word){
-        add(word);
-    }
-    file.close();
 }
+
+
+
 // ==================== 12. BloomFilter 输出 (<<) ====================
 // 格式：哈希数量 + 种子列表 + 位数组
 template <std::size_t N>
