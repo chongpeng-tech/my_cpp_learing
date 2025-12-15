@@ -62,6 +62,7 @@ void VoiceMessage::print(std::ostream& os) const {
     for(size_t i = 0; i < voice.size(); ++i){
         os << static_cast<int>(voice[i]) <<  (i == voice.size() - 1 ? "" : " ");
     }
+    os << "*************************" << std::endl; // 保持和头部一样的25个星
 }
 
 std::vector<unsigned char> VoiceMessage::get_voice() const {return voice; }
