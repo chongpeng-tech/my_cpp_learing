@@ -1,38 +1,39 @@
-#include"message.h"
-#include<ctime>
-#include<cstdlib>
-#include<iomanip>
+#include "message.h"
+#include <ctime>
+#include <cstdlib>
+#include <iomanip>
 
 Message::Message(std::string type, std::string sender, std::string receiver)
     :type(type), sender(sender), receiver(receiver) { 
         std::time_t now = std::time(nullptr);
-        //获取当前系统时间
         std::tm* gmt_time = std::gmtime(&now);
-        //将时间格式化
         char buffer[80];
         std::strftime(buffer, sizeof(buffer), "%a %b %d %H:%M:%S %Y", gmt_time);
         this->time = std::string(buffer);
 }
-Message::Message() :Message(" ", " ", " ") {}
-//public的getter函数
+Message::Message() :Message("", "", "") {} // 建议初始化为空字符串而不是空格
+
 std::string Message::get_type() const {return type; }
 std::string Message::get_sender() const {return sender; }
 std::string Message::get_receiver() const {return receiver; }
 std::string Message::get_time() const {return time; }
 
 void Message::print(std::ostream& os) const {
-    os << "*************************" << std::endl; // 25个星    os << sender << " -> " << receiver << std::endl;
-    os << "Message type: " << type << std::endl;
-    os << "Message time: " << time << std::endl;
+    os << "*************************" << std::endl;
+    // ⚠️ 修正1：必须换行，不要写在注释后面
+    os << sender << " -> " << receiver << std::endl;
+    
+    // ⚠️ 修正2：改成小写 message
+    os << "message type: " << type << std::endl;
+    os << "message time: " << time << std::endl;
 }
 
-// << 运算符重载
 std::ostream& operator<<(std::ostream& os, const Message& msg) {
     msg.print(os);
     return os;
 }
 
-//TextMessage
+// TextMessage Implementation
 TextMessage::TextMessage(std::string text, std::string sender, std::string receiver)
     :Message("text", sender, receiver), text(text)
 {
@@ -41,13 +42,12 @@ TextMessage::TextMessage(std::string text, std::string sender, std::string recei
 void TextMessage::print(std::ostream& os) const {
     Message::print(os);
     os << "text: " << text << std::endl;
-    os << "*************************" << std::endl; // 25个星
+    os << "*************************" << std::endl; 
 }
 
 std::string TextMessage::get_text() const {return text; }
 
-//VoiceMessage
-
+// VoiceMessage Implementation
 VoiceMessage::VoiceMessage(std::string sender, std::string receiver)
     :Message("voice", sender, receiver){
         for(int i = 0; i < 5; ++i){
@@ -61,7 +61,9 @@ void VoiceMessage::print(std::ostream& os) const {
     for(size_t i = 0; i < voice.size(); ++i){
         os << static_cast<int>(voice[i]) <<  (i == voice.size() - 1 ? "" : " ");
     }
-    os << "*************************" << std::endl; // 保持和头部一样的25个星
+    // ⚠️ 修正3：打印完数字后必须先换行，再打印星星！
+    os << std::endl; 
+    os << "*************************" << std::endl; 
 }
 
 std::vector<unsigned char> VoiceMessage::get_voice() const {return voice; }
