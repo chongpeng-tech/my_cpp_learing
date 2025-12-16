@@ -24,3 +24,5 @@ private:
     Server* const server;
 
 };
+
+#endif

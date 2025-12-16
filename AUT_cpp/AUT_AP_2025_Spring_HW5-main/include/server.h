@@ -14,7 +14,7 @@ public:
 
     //Getter  晕晕的，以后先写private里面的内容
     std::vector<User> get_users();
-    std::map<std::string, std::string> get_public_key();
+    std::map<std::string, std::string> get_public_keys();
     std::vector<Message*> get_messages();
 
     //核心功能，创建用户和创建消息

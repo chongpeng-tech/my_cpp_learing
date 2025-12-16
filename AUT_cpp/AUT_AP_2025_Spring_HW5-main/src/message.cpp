@@ -21,8 +21,7 @@ std::string Message::get_receiver() const {return receiver; }
 std::string Message::get_time() const {return time; }
 
 void Message::print(std::ostream& os) const {
-    os << "*************************" << std::endl;
-    os << sender << " -> " << receiver << std::endl;
+    os << "*************************" << std::endl; // 25个星    os << sender << " -> " << receiver << std::endl;
     os << "Message type: " << type << std::endl;
     os << "Message time: " << time << std::endl;
 }
@@ -42,7 +41,7 @@ TextMessage::TextMessage(std::string text, std::string sender, std::string recei
 void TextMessage::print(std::ostream& os) const {
     Message::print(os);
     os << "text: " << text << std::endl;
-    os << "*************************" << std::endl;
+    os << "*************************" << std::endl; // 25个星
 }
 
 std::string TextMessage::get_text() const {return text; }
