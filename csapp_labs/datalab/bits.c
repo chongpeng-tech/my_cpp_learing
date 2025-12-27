@@ -1,36 +1,32 @@
-/* 
- * CS:APP Data Lab 
+/*
+ * CS:APP 数据实验
  * 
- * <Please put your name and userid here>
+ * <chongpeng.luo haringkarolt@gmail.com>
  * 
- * bits.c - Source file with your solutions to the Lab.
- *          This is the file you will hand in to your instructor.
+ * bits.c - 你在实验中解决方案的源代码文件。
+ *          这是你将提交给教师的文件。
  *
- * WARNING: Do not include the <stdio.h> header; it confuses the dlc
- * compiler. You can still use printf for debugging without including
- * <stdio.h>, although you might get a compiler warning. In general,
- * it's not good practice to ignore compiler warnings, but in this
- * case it's OK.  
+ * 警告：不要包含 <stdio.h> 头文件；它会干扰 dlc 编译器。
+ * 你仍然可以在调试时使用 printf，但不包含 <stdio.h>，尽管你可能会收到编译警告。一般来说，
+ * 忽略编译警告并不是一个好的实践，但在这种情况下是可以接受的。
  */
 
 #if 0
 /*
- * Instructions to Students:
+ * 学生说明：
  *
- * STEP 1: Read the following instructions carefully.
+ * 步骤 1：仔细阅读以下说明。
  */
 
-You will provide your solution to the Data Lab by
-editing the collection of functions in this source file.
+你将通过编辑此源文件中的函数集合来提供你的数据实验解决方案。
 
-INTEGER CODING RULES:
- 
-  Replace the "return" statement in each function with one
-  or more lines of C code that implements the function. Your code 
-  must conform to the following style:
- 
+整数编码规则：
+
+  用一行或多行 C 代码替换每个函数中的 "return" 语句，以实现该函数。你的代码
+  必须遵循以下风格：
+
   int Funct(arg1, arg2, ...) {
-      /* brief description of how your implementation works */
+      /* 简要描述你的实现是如何工作的 */
       int var1 = Expr1;
       ...
       int varM = ExprM;
@@ -41,255 +37,263 @@ INTEGER CODING RULES:
       return ExprR;
   }
 
-  Each "Expr" is an expression using ONLY the following:
-  1. Integer constants 0 through 255 (0xFF), inclusive. You are
-      not allowed to use big constants such as 0xffffffff.
-  2. Function arguments and local variables (no global variables).
-  3. Unary integer operations ! ~
-  4. Binary integer operations & ^ | + << >>
+  每个 "Expr" 是一个只使用以下内容的表达式：
+  1. 整数常量 0 到 255（0xFF），包含。你不能使用像 0xffffffff 这样的常量。
+  2. 函数参数和局部变量（不允许使用全局变量）。
+  3. 一元整数操作 ! ~
+  4. 二元整数操作 & ^ | + << >>
     
-  Some of the problems restrict the set of allowed operators even further.
-  Each "Expr" may consist of multiple operators. You are not restricted to
-  one operator per line.
+  有些问题甚至进一步限制了允许的运算符集。
+  每个 "Expr" 可以由多个运算符组成。每行不限制只用一个运算符。
 
-  You are expressly forbidden to:
-  1. Use any control constructs such as if, do, while, for, switch, etc.
-  2. Define or use any macros.
-  3. Define any additional functions in this file.
-  4. Call any functions.
-  5. Use any other operations, such as &&, ||, -, or ?:
-  6. Use any form of casting.
-  7. Use any data type other than int.  This implies that you
-     cannot use arrays, structs, or unions.
+  明文禁止：
+  1. 使用任何控制结构，如 if、do、while、for、switch 等。
+  2. 定义或使用任何宏。
+  3. 在此文件中定义任何附加函数。
+  4. 调用任何函数。
+  5. 使用任何其他操作，如 &&、||、- 或 ?:
+  6. 使用任何形式的类型转换。
+  7. 使用任何除 int 以外的数据类型。这意味着你
+     不能使用数组、结构体或联合。
 
  
-  You may assume that your machine:
-  1. Uses 2s complement, 32-bit representations of integers.
-  2. Performs right shifts arithmetically.
-  3. Has unpredictable behavior when shifting if the shift amount
-     is less than 0 or greater than 31.
+  你可以假设你的机器：
+  1. 使用 2 的补码，32 位整数表示。
+  2. 执行算术右移。
+  3. 如果移位量小于 0 或大于 31，将会有不可预测的行为。
 
 
-EXAMPLES OF ACCEPTABLE CODING STYLE:
+可接受的编码风格示例：
   /*
-   * pow2plus1 - returns 2^x + 1, where 0 <= x <= 31
+   * pow2plus1 - 返回 2^x + 1，其中 0 <= x <= 31
    */
   int pow2plus1(int x) {
-     /* exploit ability of shifts to compute powers of 2 */
+     /* 利用移位计算 2 的幂 */
      return (1 << x) + 1;
   }
 
   /*
-   * pow2plus4 - returns 2^x + 4, where 0 <= x <= 31
+   * pow2plus4 - 返回 2^x + 4，其中 0 <= x <= 31
    */
   int pow2plus4(int x) {
-     /* exploit ability of shifts to compute powers of 2 */
+     /* 利用移位计算 2 的幂 */
      int result = (1 << x);
      result += 4;
      return result;
   }
 
-FLOATING POINT CODING RULES
+浮点编码规则
 
-For the problems that require you to implement floating-point operations,
-the coding rules are less strict.  You are allowed to use looping and
-conditional control.  You are allowed to use both ints and unsigneds.
-You can use arbitrary integer and unsigned constants. You can use any arithmetic,
-logical, or comparison operations on int or unsigned data.
+对于需要你实现浮点操作的问题，编码规则不那么严格。你可以使用循环和
+条件控制。你可以同时使用整数和无符号数。
+你可以使用任意整数和无符号常量。你可以对整数或无符号数据执行任何算术、
+逻辑或比较操作。
 
-You are expressly forbidden to:
-  1. Define or use any macros.
-  2. Define any additional functions in this file.
-  3. Call any functions.
-  4. Use any form of casting.
-  5. Use any data type other than int or unsigned.  This means that you
-     cannot use arrays, structs, or unions.
-  6. Use any floating point data types, operations, or constants.
+明确禁止：
+  1. 定义或使用任何宏。
+  2. 在此文件中定义任何附加函数。
+  3. 调用任何函数。
+  4. 使用任何形式的类型转换。
+  5. 使用任何除 int 或 unsigned 以外的数据类型。这意味着你
+     不能使用数组、结构体或联合。
+  6. 使用任何浮点数据类型、操作或常量。
 
 
-NOTES:
-  1. Use the dlc (data lab checker) compiler (described in the handout) to 
-     check the legality of your solutions.
-  2. Each function has a maximum number of operations (integer, logical,
-     or comparison) that you are allowed to use for your implementation
-     of the function.  The max operator count is checked by dlc.
-     Note that assignment ('=') is not counted; you may use as many of
-     these as you want without penalty.
-  3. Use the btest test harness to check your functions for correctness.
-  4. Use the BDD checker to formally verify your functions
-  5. The maximum number of ops for each function is given in the
-     header comment for each function. If there are any inconsistencies 
-     between the maximum ops in the writeup and in this file, consider
-     this file the authoritative source.
+注意事项：
+  1. 使用 dlc（数据实验检查器）编译器（手册中有描述）来 
+     检查你的解决方案是否合法。
+  2. 每个函数有一个最大操作次数（整数、逻辑或比较），你在实现该函数时允许使用
+     的最大操作次数。最大操作数由 dlc 检查。
+     注意，赋值（'='）不计入操作次数；你可以随意使用这些而不受惩罚。
+  3. 使用 btest 测试工具来检查你的函数是否正确。
+  4. 使用 BDD 检查器来正式验证你的函数。
+  5. 每个函数的最大操作次数在该函数的头部注释中给出。如果写作中的最大操作次数和此文件中的不一致，认为此文件为权威来源。
 
 /*
- * STEP 2: Modify the following functions according the coding rules.
+ * 步骤 2：根据编码规则修改以下函数。
  * 
- *   IMPORTANT. TO AVOID GRADING SURPRISES:
- *   1. Use the dlc compiler to check that your solutions conform
- *      to the coding rules.
- *   2. Use the BDD checker to formally verify that your solutions produce 
- *      the correct answers.
+ *   重要提示。为了避免评分时的意外：
+ *   1. 使用 dlc 编译器检查你的解决方案是否符合
+ *      编码规则。
+ *   2. 使用 BDD 检查器正式验证你的解决方案产生 
+ *      正确答案。
  */
 
 
 #endif
 //1
 /* 
- * bitXor - x^y using only ~ and & 
- *   Example: bitXor(4, 5) = 1
- *   Legal ops: ~ &
- *   Max ops: 14
- *   Rating: 1
+ * bitXor - 使用 ~ 和 & 实现 x^y 
+ *   示例: bitXor(4, 5) = 1
+ *   允许的运算符: ~ &
+ *   最大操作数: 14
+ *   难度: 1
  */
 int bitXor(int x, int y) {
-  return 2;
+  /*
+  这里的运算都是按每一位来运算的，但是可以先当成一位来先思考
+  x ^ y 等价于( x & ~ y ) | ( ~x & y)
+                A             B
+  摩根定律转换
+  A|B 等价于 ~(~A & ~B)
+  */
+  int res;
+  res = ~(~(x & ~y) & ~(~x & y));
+  return res;
 }
 /* 
- * tmin - return minimum two's complement integer 
- *   Legal ops: ! ~ & ^ | + << >>
- *   Max ops: 4
- *   Rating: 1
+ * tmin - 返回最小的二进制补码整数 
+ *   允许的运算符: ! ~ & ^ | + << >>
+ *   最大操作数: 4
+ *   难度: 1
  */
 int tmin(void) {
-
-  return 2;
-
+  /*
+  此题和补码有关，但是我还是不知道是怎么运算的
+  暂且先把最后一位有符号位看作一张巨大的欠条
+  */
+  int x = 1;
+  x = x << 31;
+  return x;
 }
 //2
 /*
- * isTmax - returns 1 if x is the maximum, two's complement number,
- *     and 0 otherwise 
- *   Legal ops: ! ~ & ^ | +
- *   Max ops: 10
- *   Rating: 1
+ * isTmax - 如果 x 是最大二进制补码数，返回 1，
+ *     否则返回 0 
+ *   允许的运算符: ! ~ & ^ | +
+ *   最大操作数: 10
+ *   难度: 1
  */
 int isTmax(int x) {
-  return 2;
+  /*
+  如果是最大的int数字，则是 011111...1111(32位)
+  加1之后变成 10000....00000
+  再取反又变成 011111...11111
+  这两个数一样的，那就可以用异或了
+  x ^ ~(x + 1) 相同为0，不同为1
+  */
+  return ;
 }
 /* 
- * allOddBits - return 1 if all odd-numbered bits in word set to 1
- *   where bits are numbered from 0 (least significant) to 31 (most significant)
- *   Examples allOddBits(0xFFFFFFFD) = 0, allOddBits(0xAAAAAAAA) = 1
- *   Legal ops: ! ~ & ^ | + << >>
- *   Max ops: 12
- *   Rating: 2
+ * allOddBits - 如果所有奇数编号的位都是 1，返回 1
+ *   位从 0（最低有效位）到 31（最高有效位）
+ *   示例：allOddBits(0xFFFFFFFD) = 0, allOddBits(0xAAAAAAAA) = 1
+ *   允许的运算符: ! ~ & ^ | + << >>
+ *   最大操作数: 12
+ *   难度: 2
  */
 int allOddBits(int x) {
   return 2;
 }
 /* 
- * negate - return -x 
- *   Example: negate(1) = -1.
- *   Legal ops: ! ~ & ^ | + << >>
- *   Max ops: 5
- *   Rating: 2
+ * negate - 返回 -x 
+ *   示例: negate(1) = -1.
+ *   允许的运算符: ! ~ & ^ | + << >>
+ *   最大操作数: 5
+ *   难度: 2
  */
 int negate(int x) {
   return 2;
 }
 //3
 /* 
- * isAsciiDigit - return 1 if 0x30 <= x <= 0x39 (ASCII codes for characters '0' to '9')
- *   Example: isAsciiDigit(0x35) = 1.
+ * isAsciiDigit - 如果 0x30 <= x <= 0x39（字符 '0' 到 '9' 的 ASCII 码），返回 1
+ *   示例: isAsciiDigit(0x35) = 1.
  *            isAsciiDigit(0x3a) = 0.
  *            isAsciiDigit(0x05) = 0.
- *   Legal ops: ! ~ & ^ | + << >>
- *   Max ops: 15
- *   Rating: 3
+ *   允许的运算符: ! ~ & ^ | + << >>
+ *   最大操作数: 15
+ *   难度: 3
  */
 int isAsciiDigit(int x) {
   return 2;
 }
 /* 
- * conditional - same as x ? y : z 
- *   Example: conditional(2,4,5) = 4
- *   Legal ops: ! ~ & ^ | + << >>
- *   Max ops: 16
- *   Rating: 3
+ * conditional - 等同于 x ? y : z 
+ *   示例: conditional(2,4,5) = 4
+ *   允许的运算符: ! ~ & ^ | + << >>
+ *   最大操作数: 16
+ *   难度: 3
  */
 int conditional(int x, int y, int z) {
   return 2;
 }
 /* 
- * isLessOrEqual - if x <= y  then return 1, else return 0 
- *   Example: isLessOrEqual(4,5) = 1.
- *   Legal ops: ! ~ & ^ | + << >>
- *   Max ops: 24
- *   Rating: 3
+ * isLessOrEqual - 如果 x <= y 则返回 1，否则返回 0 
+ *   示例: isLessOrEqual(4,5) = 1.
+ *   允许的运算符: ! ~ & ^ | + << >>
+ *   最大操作数: 24
+ *   难度: 3
  */
 int isLessOrEqual(int x, int y) {
   return 2;
 }
 //4
 /* 
- * logicalNeg - implement the ! operator, using all of 
- *              the legal operators except !
- *   Examples: logicalNeg(3) = 0, logicalNeg(0) = 1
- *   Legal ops: ~ & ^ | + << >>
- *   Max ops: 12
- *   Rating: 4 
+ * logicalNeg - 实现 ! 操作符，使用所有合法的 
+ *              运算符，除了 !
+ *   示例: logicalNeg(3) = 0, logicalNeg(0) = 1
+ *   允许的运算符: ~ & ^ | + << >>
+ *   最大操作数: 12
+ *   难度: 4 
  */
 int logicalNeg(int x) {
   return 2;
 }
-/* howManyBits - return the minimum number of bits required to represent x in
- *             two's complement
- *  Examples: howManyBits(12) = 5
+/* howManyBits - 返回表示 x 所需的最少位数
+ *             二进制补码
+ *  示例: howManyBits(12) = 5
  *            howManyBits(298) = 10
  *            howManyBits(-5) = 4
  *            howManyBits(0)  = 1
  *            howManyBits(-1) = 1
  *            howManyBits(0x80000000) = 32
- *  Legal ops: ! ~ & ^ | + << >>
- *  Max ops: 90
- *  Rating: 4
+ *  允许的运算符: ! ~ & ^ | + << >>
+ *  最大操作数: 90
+ *  难度: 4
  */
 int howManyBits(int x) {
   return 0;
 }
 //float
 /* 
- * floatScale2 - Return bit-level equivalent of expression 2*f for
- *   floating point argument f.
- *   Both the argument and result are passed as unsigned int's, but
- *   they are to be interpreted as the bit-level representation of
- *   single-precision floating point values.
- *   When argument is NaN, return argument
- *   Legal ops: Any integer/unsigned operations incl. ||, &&. also if, while
- *   Max ops: 30
- *   Rating: 4
+ * floatScale2 - 返回表达式 2*f 的位级等效
+ *   浮点数参数 f。
+ *   参数和结果都以无符号整数传递，但
+ *   它们应解释为单精度浮点数的位级表示。
+ *   当参数为 NaN 时，返回参数
+ *   允许的运算符: 任何整数/无符号操作，包括 ||, &&。也可以使用 if, while
+ *   最大操作数: 30
+ *   难度: 4
  */
 unsigned floatScale2(unsigned uf) {
   return 2;
 }
 /* 
- * floatFloat2Int - Return bit-level equivalent of expression (int) f
- *   for floating point argument f.
- *   Argument is passed as unsigned int, but
- *   it is to be interpreted as the bit-level representation of a
- *   single-precision floating point value.
- *   Anything out of range (including NaN and infinity) should return
- *   0x80000000u.
- *   Legal ops: Any integer/unsigned operations incl. ||, &&. also if, while
- *   Max ops: 30
- *   Rating: 4
+ * floatFloat2Int - 返回表达式 (int) f 的位级等效
+ *   浮点数参数 f。
+ *   参数以无符号整数传递，但
+ *   它们应解释为单精度浮点数的位级表示。
+ *   超出范围的值（包括 NaN 和无穷大）应返回
+ *   0x80000000u。
+ *   允许的运算符: 任何整数/无符号操作，包括 ||, &&。也可以使用 if, while
+ *   最大操作数: 30
+ *   难度: 4
  */
 int floatFloat2Int(unsigned uf) {
   return 2;
 }
 /* 
- * floatPower2 - Return bit-level equivalent of the expression 2.0^x
- *   (2.0 raised to the power x) for any 32-bit integer x.
+ * floatPower2 - 返回表达式 2.0^x 的位级等效
+ *   (2.0 的 x 次方) 对于任何 32 位整数 x。
  *
- *   The unsigned value that is returned should have the identical bit
- *   representation as the single-precision floating-point number 2.0^x.
- *   If the result is too small to be represented as a denorm, return
- *   0. If too large, return +INF.
+ *   返回的无符号值应具有与单精度浮点数 2.0^x 相同的位
+ *   表示。如果结果太小而无法表示为非规格化数，则返回
+ *   0。如果太大，则返回 +INF。
  * 
- *   Legal ops: Any integer/unsigned operations incl. ||, &&. Also if, while 
- *   Max ops: 30 
- *   Rating: 4
+ *   允许的运算符: 任何整数/无符号操作，包括 ||, &&。也可以使用 if, while 
+ *   最大操作数: 30 
+ *   难度: 4
  */
 unsigned floatPower2(int x) {
     return 2;
