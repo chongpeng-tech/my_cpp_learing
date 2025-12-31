@@ -1,0 +1,13 @@
+# 忽略 SDCC 产生的临时文件
+*.asm
+*.lst
+*.mem
+*.rel
+*.rst
+*.sym
+*.lk
+*.map
+*.ihx
+
+
+
